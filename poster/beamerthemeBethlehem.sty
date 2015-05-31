@@ -1,0 +1,85 @@
+\ProvidesPackage{beamerthemeBethlehem}  % this style was created by Thomas Deselaers an Philippe Dreuw and modified by Ben Kraft
+
+\RequirePackage{tangocolors}
+\selectcolormodel{cmyk}
+\mode<presentation>
+
+\setbeamercolor{headline}{fg=tabutter,bg=black}
+\setbeamercolor{footline}{fg=tabutter, bg=ta3gray}
+\setbeamerfont{footline}{size=\large,series=\tt}
+\setbeamercolor{separation line}{bg=ta2orange}
+\setbeamercolor{title in headline}{fg=tabutter}
+\setbeamercolor{author in headline}{fg=ta2orange}
+\setbeamercolor{institute in headline}{fg=ta3orange}
+
+\setbeamercolor{framesubtitle}{fg=ta3orange, bg=ta2gray}
+\setbeamercolor{author in head/foot}{fg=ta2orange, bg=black}
+\setbeamercolor{title in head/foot}{fg=ta2orange, bg=black}
+
+\setbeamercolor*{normal text}{fg=black, bg=white}
+\setbeamercolor*{block body}{bg=ta3aluminium,fg=black}
+\setbeamercolor*{block title}{fg=taorange,bg=ta2gray}
+\setbeamerfont{block title}{size=\Large, series=\bf}
+\setbeamercolor{upper separation line head}{fg=ta2orange}
+
+\setbeamercolor*{example body}{fg=ta3aluminium,bg=black}
+\setbeamercolor*{example text}{fg=ta3aluminium,bg=black}
+\setbeamercolor*{example title}{bg=taorange,fg=ta2gray}
+
+\setbeamercolor{alerted text}{fg=ta3scarletred}
+\setbeamerfont{alerted text}{series=\boldmath\bf}
+
+%\setbeamercolor{example text}{fg=taorange}
+\setbeamercolor{structure}{fg=ta3skyblue}
+
+\defbeamertemplate*{itemize item}{largetriangle}{$\blacktriangleright$\hspace{1em}}
+\setbeamertemplate{itemize items}[largetriangle]
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+
+\renewcommand{\section}[1]{\begin{center}\textbf{\LARGE\boldmath #1\vspace{-0.4em}}\end{center}}
+\renewcommand{\subsection}[1]{\textbf{\large\boldmath #1}}
+\newenvironment{bulletitem}{\begin{itemize}\setlength{\itemindent}{1.25em}\item}{\end{itemize}}
+\newenvironment{bulletitemize}{\begin{itemize}\setlength{\itemindent}{1.25em}}{\end{itemize}}
+
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[ht=4ex,dp=0ex,center,rounded=true,shadow=true,leftskip=1cm,rightskip=1cm plus 2cm minus 0.5cm,colsep*=.75ex]{block title}%
+		\usebeamerfont*{block title}{\subsection{\makebox[0pt][l]{\phantom{Xg}}\boldmath\insertblocktitle}}
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1cm,rightskip=1cm plus 2cm minus 0.5cm,colsep*=.75ex,sep=-0.5ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{headline}{  
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      \begin{column}{0.7\textwidth}
+        \begin{center}
+          \vskip4ex
+          \usebeamercolor{title in headline}{\color{fg}\textbf{\Huge{\boldmath\inserttitle}}}\vspace{0.5em}
+
+          \usebeamercolor{author in headline}{\color{fg}\Large{\insertauthor}}
+
+          \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}}\vspace{0.2em}
+        \end{center}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}{}
+
+
+\mode<all>

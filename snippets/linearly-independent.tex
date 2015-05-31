@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Sq}{\mathrm{Sq}}
+
+\newtheorem{prop}{Proposition}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+
+  \begin{lem}\label{lem:linearly-independent}
+    Taken as elements of $L(k)_{-\infty}$ as a module over $\A(n)\otimes_{\A(n-k)}\F_2$, the set
+    \[\{X_nX_{n-1}\cdots X_{n-k+1}\Sq^I\mid I=(2^{n+1}m_1,2^nm_2,\ldots,2^{n-k+2}m_k), m_1\geq m_2\geq\cdots\geq m_{n-k}\}\]
+    is linearly independent.
+  \end{lem}
+  \begin{proof}
+    Note that by the commutation relation we have shown, the element $s=X_nX_{n-1}\cdots X_{n-k+1}\Sq^I$ may be rewritten as
+    \[X_n\Sq^{2^{n+1}m_1}X_{n-1}\Sq^{2^nm_2}\cdots X_{n-k+1}\Sq^{2^{n-k+2}m_k}.\]
+    Let $M_{k,n}$ be the subspace of $\A$ which is spanned by elements of the form $yz$ where $y\in L(k)$ and $z\in \A(n)$ with the degree of $z$ at least $1$.  If $b\in \A$, we will write $b+M_{k,n}$ for the subset of $\A$ consisting of elements of the form $b+m$ for $m\in M_{k,n}$.
+
+    \begin{prop}\label{prop:m-thing}
+      The element
+      \[X_n\Sq^{2^{n+1}m_n}X_{n-1}\Sq^{2^nm_{n-1}}\cdots X_{n-k+1}\Sq^{2^{n-k+2}m_{n-k+1}}\]
+      is in
+      \[\Sq^{2^{n+1}(m_n+n)+1}\Sq^{2^n(m_{n-1}+n-1)+1}\cdots\Sq^{2^{n-k+2}(m_{n-k+1}+n-k+1)+1} + M_{k,n-k}.\]
+    \end{prop}
+    \begin{proof}
+
+    We proceed by induction on $k$ for fixed $n$.  If $k=1$, we know that $X_n\in M_{1,n-1}+\Sq^{n2^{n+1}+1}$, since the latter term is the only element of $L(1)$ in the right dimension.  Then since, as an $\A(n)$-module, $L(1)$ is periodic in degrees modulo $2^{n+1}$, $X_n\Sq^{2^{n+1}m}\in M_{1,n-1}+\Sq^{2^{n+1}(n+m)+1}$.
+
+    Now suppose the proposition holds for some $k$; we will show it for $k+1$.  Let 
+    \[t=X_n\Sq^{2^{n+1}m_n}X_{n-1}\Sq^{2^nm_{n-1}}\cdots X_{n-k+1}\Sq^{2^{n-k+2}m_{n-k+1}},\]
+    let $t'=X_{n-k}\Sq^{2^{n-k+1}m_{n-k}}$, let
+    \[b=\Sq^{2^{n+1}(m_n+n)+1}\Sq^{2^n(m_{n-1}+n-1)+1}\cdots\Sq^{2^{n-k+2}(m_{n-k+1}+n-k+1)+1},\]
+    and let $b'=\Sq^{2^{n-k+1}(m_{n-k}+n-k)+1}$.  Then by inductive hypothesis we know that $t\in b+M_{k,n-k}$ and by the base case we know that $t'\in b'+M_{1,n-k-1}$; we wish to show that $tt'\in bb'+M_{k+1,n-k-1}$.  To do this, it suffices to show that $bM_{1,n-k-1}$ and $M_{k,n-k}t'$ are contained in $M_{k+1,n-k-1}$; for simplicity we will show that this is true of the spanning sets we have constructed.
+    
+    First, let $y\in L(1)$, $z\in \A(n-k-1)$ with $z$ not in degree $0$, so that $yz\in M_{1,n-k-1}$.  Then by looking at degrees, $by$ is already in admissible form, so it is in $L(k+1)$, so $byz\in M_{k+1,n-k-1}$ as desired.  Since elements of the form $yz$ span $M_{1,n-k-1}$, we get that $bM_{1,n-k-1}\subset M_{k+1,n-k-1}$.
+
+    Second, let $y\in L(k)$, $z\in \A(n-k)$ with $z$ not in degree $0$, so that $yz\in M_{k,n-k}$.  If $z\not\in\A(n-k-1)$, then $zX_{n-k}$ must be zero in $\A(n-k)$.  Then we may assume $z\in\A(n-k-1)$; we will show that both $yzb'$ and $yzM_{1,n-k-1}$ are contained in $M_{k+1,n-k-1}$.  Now if we write $zb'$ in admissible form, multiplying by $y$ will give an element already in admissible form by looking at degrees, so we need only show that $zb'\in M_{1,n-k-1}$.  If we multiply out using the Adem relations, this is clearly true, modulo showing that $zb'$ contains no terms of length $1$.  This is easy to show; by the Milnor basis, $z$ cannot end in a Steenrod square with degree a multiple of $2^{n-k}$, but $b'$ is a Steenrod square in a degree which is $1$ modulo $2^{n-k}$, so on multiplying the two, the length $1$ term must vanish, as desired.
+
+    %maybe we can merge the following with the previous argument somehow?
+    Finally, then, we must show that $yzM_{1,n-k-1}\subset M_{k+1,n-k-1}$; let $y'\in L(1)$ and $z'\in\A(n-k-1)$, so we must show that $yzy'z'\in M_{k+1,n-k-1}$.  Again looking at the Adem relations, we may write $zy'$ in the form $y''z''$ where $y''\in L(1)$ and $z''\in\A(n-k-1)$.  Then $z''z'\in \A(n-k-1)$ and is not in degree zero, and $yy''\in L(k+1)$, so $yy''z''z'\in M_{k+1,n-k-1}$.
+
+    Then the induction is complete; all terms of $tt'-bb'$ are in $M_{k+1,n-k-1}$ as desired.
+    \end{proof}
+
+    Then since the elements in question may be written in the given form, their shortest terms are unique and distinct, so the terms are linearly independent.
+  \end{proof}
+
+\end{document}

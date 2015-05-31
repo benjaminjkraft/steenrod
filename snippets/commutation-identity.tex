@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Sq}{\mathrm{Sq}}
+
+\newtheorem{prop}{Proposition}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+  Recall that, in the Wood Z-basis, the top class of $A(n)\otimes_{A(n-1)}\F_2$ may be written as $\Sq^{2^{n+1}-2^n}\Sq^{2^{n+1}-2^{n-1}}\cdots\Sq^{2^{n+1}-1}$; denote this by $X_n$.
+
+  \begin{lem}\label{lem:commutation-relation}
+    For any positive integers $m$ and $n$,
+    \[X_nX_{n-1}\Sq^{2^{n+1}m} = X_n\Sq^{2^{n+1}m}X_{n-1}.\]
+  \end{lem}
+
+  \begin{proof}
+    First, we show the following identities by application of the Adem relations:
+    \begin{prop}\label{prop:identity-1}
+      For any positive integers $m$ and $n$,
+      \[\Sq^{2^n-1}\Sq^{2^{n+1}m}=\Sq^{2^{n+1}m+2^n-1}.\]
+    \end{prop}
+    \begin{prop}\label{prop:identity-2}
+      For any positive integers $k$, $m$, and $n$, with $k\leq n$,
+      \[\Sq^{2^n-2^k}\Sq^{2^n-2^{k-1}+2^{n+1}m}=\Sq^{2^n-2^k+2^{n+1}m}\Sq^{2^n-2^{k-1}}+\Sq^{2^{n+1}-2^k}\Sq^{2^{n+1}m-2^{k-1}}.\]
+    \end{prop}
+    \begin{proof}[Proof of Proposition~\ref{prop:identity-1}]
+      The Adem relations give us that
+      \[\Sq^{2^n-1}\Sq^{2^{n+1}m} = \sum_{j=0}^{2^{n-1}-1}\binom{2^{n+1}m-1-j}{2^n-1-2j}\Sq^{2^{n+1}m+2^n-1-j}\Sq^j.\]
+      Recall that in $\F_2$, $\binom{p}{q}$ is $1$ if and only if $p$ has a one in every position of its binary expansion that $q$ has a $1$.  Let $2^n>j>0$ and let $2^{\omega(j)}$ be the largest power of $2$ dividing $j$.  Then the binary expansion of $2^{n+1}m-1-j$ ends in a zero and then $\omega(j)$ ones, while that of $2^n-1-2j$ ends in a zero and then $\omega(j)+1$ ones, so the binomial coefficient in the Adem relation is zero.  Then the only term of the Adem relation that is nonzero is that when $j=0$, where $2^{n+1}m-1$ ends with $n+1$ ones, while $2^n-1$ consists of $n$ ones.
+    \end{proof}
+    \begin{proof}[Proof of Proposition~\ref{prop:identity-2}]
+      We expand the first and last terms using the Adem relations, and show that they are identical except for the middle term. For convenience, let $d=2^{n+1}(m+1)-2^k-2^{k-1}$, the degree of the elements.
+      \begin{align*}
+        \Sq^{2^n-2^k}\Sq^{2^n-2^{k-1}+2^{n+1}m} &= \sum_{j=0}^{2^{n-1}-2^{k-1}} \binom{2^n-2^{k-1}+2^{n+1}m-1-j}{2^n-2^k-2j} \Sq^{d-j}\Sq^j \\
+        \Sq^{2^{n+1}-2^k}\Sq^{2^{n+1}m-2^{k-1}} &=\sum_{j=0}^{2^n-2^{k-1}}\binom{2^{n+1}m-2^{k-1}-1-j}{2^{n+1}-2^k-2j}\Sq^{d-j}\Sq^j \\
+      \end{align*}
+      First, let $0\leq j\leq 2^{n-1}-2^{k-1}$; we will show the two binomial coefficients are equal.  We again consider the binary expansions.  The expansion of $2^n-2^k-2j$ is the same as that of $2^{n+1}-2^k-2j$, except that the leading one has been removed.  The corresponding bits of $2^n-2^{k-1}+2^{n+1}m-1-j$ and $2^{n+1}m-2^{k-1}-1-j$ are also zero and one, respectively, so the two binomial coefficients are the same.
+
+      Now let $2^{n-1}-2^{k-1}<j<2^n-2^{k-1}$; we will show that the binomial coefficient
+      \[\binom{2^{n+1}m-2^{k-1}-1-j}{2^{n+1}-2^k-2j}\]
+      is zero.  Let $2^q$ be the next power of $2$ strictly larger than $2^n-2^{k-1}+j$, so $q\leq n-1$.  Then the $q$th position of the binary expansion will not satisfy the condition to make the binomial coefficient one, so it will be zero.
+
+      Finally, if $j=2^n-2^{k-1}$, the binomial coefficient in the second formula has a zero on the bottom, thus is one, so we get the middle term of the claimed identity.
+    \end{proof}
+
+    Then in particular, by repeated application of the above identities, we may write
+    \begin{align*}
+      X_{n-1}\Sq^{2^{n+1}m} &= \Sq^{2^n-2^{n-1}}\Sq^{2^n-2^{n-2}}\cdots\Sq^{2^n-2}\Sq^{2^{n+1}m+2^n-1} \\
+        &= \Sq^{2^n-2^{n-1}}\cdots\Sq^{2^n-4}\Sq^{2^{n+1}m+2^n-2}\Sq^{2^n-1} \\
+        &\quad + \Sq^{2^n-2^{n-1}}\cdots\Sq^{2^n-4}\Sq^{2^{n+1}-2}\Sq^{2^{n+1}m-1}\\
+        &\ \;\vdots \\
+        &=\Sq^{2^{n+1}m}X_{n-1}\\
+        &\quad + \Sq^{2^n-2^{n-1}}\cdots\Sq^{2^n-4}\Sq^{2^{n+1}-2}\Sq^{2^{n+1}m-1}\\
+        &\quad + \cdots + \Sq^{2^n}\Sq^{2^{n+1}m-2^{n-1}}\Sq^{2^n-2^{n-2}}\cdots\Sq^{2^n-1}.
+    \end{align*}
+    Now all of the extra terms are products of (from left to right) an element of $\A(n-1)$, then an element of the form $\Sq^{2^{n+1}-2^k}$ for $k<n+1$, then some element of $\A$.  In particular, they are zero in $\A(n-1)\otimes_{\A(n)}\A$.  Then since $X_n$ is the top class of $\A(n)\otimes_{\A(n-1)}\F_2$, thus annihilates any element of $\A(n)$ that is not in $\A(n-1)$, $1\otimes x\mapsto X_nx$ is well-defined as a map from $\A(n-1)\otimes_{\A(n)}\A$ to $\A$, so the two sides are the same when multiplied by $X_n$:
+    \[X_nX_{n-1}\Sq^{2^{n+1}m} = X_n\Sq^{2^{n+1}m}X_{n-1}.\]
+
+  \end{proof}
+
+\end{document}
